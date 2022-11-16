@@ -27,6 +27,7 @@ themeBtn.addEventListener("click", () => {
 });
 
 // ADDING IMAGES
+
 const mainContainer = document.getElementById("main-container");
 let emptySlot = document.querySelector(".empty");
 emptySlot.addEventListener("click", handleAddingPhotos);
@@ -36,6 +37,7 @@ function handleAddingPhotos() {
   handleAddingSections();
   emptySlot.innerHTML = `<img style="border-radius: inherit" src="https://picsum.photos/${emptySlot.clientWidth}/${emptySlot.clientHeight}/"/>`;
   emptySlot.classList.remove("empty");
+  emptySlot.removeEventListener("click", handleAddingPhotos);
   if (!emptySlot.nextElementSibling) handleAddingSections();
   else emptySlot = emptySlot.nextElementSibling;
   emptySlot.classList.add("empty");

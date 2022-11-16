@@ -17,9 +17,8 @@ body {
 }
 
 #main-container {
-  margin: 30px;
+  margin: 80px 30px;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
 }
