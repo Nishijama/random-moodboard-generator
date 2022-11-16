@@ -95,6 +95,8 @@ body {
   }
 }
 
+// COLOR PICKER
+
 #color-picker {
   position: fixed;
   right: 30px;
@@ -112,9 +114,11 @@ body {
     opacity: 1;
   }
   #colors-list {
-    margin-top: 10px;
+    position: absolute;
+    top: 0;
+    right: 60px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
   }
   #colors-list div {

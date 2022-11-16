@@ -11,8 +11,8 @@ const colorsList = document.getElementById("colors-list");
 colorsList.classList.add("hidden");
 themes.map(theme => {
   const color = document.createElement("div");
-  color.style.width = "30px";
-  color.style.height = "30px";
+  color.style.width = "40px";
+  color.style.height = "40px";
   color.style.borderRadius = "50%";
   color.style.backgroundImage = theme;
   colorsList.appendChild(color);
