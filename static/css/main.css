@@ -7,7 +7,7 @@
 body {
   height: 100vh;
   width: 100vw;
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
 }
 
 .add_image {
@@ -19,16 +19,6 @@ body {
   font-size: 30px;
   font-weight: bold;
   color: white;
-}
-
-.horizontal {
-  min-width: 300px;
-  min-height: 200px;
-}
-
-.vertical {
-  min-width: 200px;
-  min-height: 300px;
 }
 
 .four-part-container {
@@ -44,6 +34,14 @@ body {
   -moz-column-gap: 10px;
        column-gap: 10px;
   row-gap: 10px;
+}
+.four-part-container .horizontal {
+  min-width: 300px;
+  min-height: 200px;
+}
+.four-part-container .vertical {
+  min-width: 200px;
+  min-height: 300px;
 }
 .four-part-container div:nth-child(1) {
   grid-column: 1/span 2;
@@ -64,4 +62,42 @@ body {
   grid-column: 2/span 2;
   grid-row: 3/span 1;
   justify-self: end;
+}
+
+#color-picker {
+  position: fixed;
+  right: 30px;
+  top: 30px;
+}
+#color-picker #theme-icon {
+  background-color: white;
+  border-radius: 50%;
+  opacity: 0.5;
+  padding: 15px;
+  transition: 0.5s;
+}
+#color-picker #theme-icon:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+#color-picker #colors-list {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#color-picker #colors-list div {
+  margin: 5px;
+  border: 1px solid white;
+}
+#color-picker #colors-list div:hover {
+  cursor: pointer;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#main-container {
+  margin: 30px;
 }/*# sourceMappingURL=main.css.map */
