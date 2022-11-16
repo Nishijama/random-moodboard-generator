@@ -10,24 +10,48 @@ $themes: (
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  // box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-image: map-get($themes, eternal-constance);
+  background-attachment: fixed;
+  position: relative;
+}
+
+#main-container {
+  margin: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .add_image {
-  border: 1px dashed white;
   border-radius: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 1s;
+}
+
+.add_image.empty {
+  border: 1px dashed white;
+  color: white;
   font-size: 30px;
   font-weight: bold;
-  color: white;
+}
+
+.add_image.empty:hover {
+  cursor: pointer;
+  background-color: rgba(#fff, 0.1);
 }
 
 .four-part-container {
@@ -37,6 +61,7 @@ body {
   grid-template-columns: 2fr 1fr 2fr;
   grid-template-rows: 2fr 1fr 2fr;
   column-gap: 10px;
+  margin: 10px;
   row-gap: 10px;
   .horizontal {
     min-width: 300px;
@@ -103,8 +128,4 @@ body {
 
 .hidden {
   visibility: hidden;
-}
-
-#main-container {
-  margin: 30px;
 }
