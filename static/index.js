@@ -1,10 +1,5 @@
 // THEME PICKER
-const themes = [
-  "linear-gradient(to top, #30cfd0 0%, #330867 100%)",
-  "linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)",
-  "linear-gradient(to top, #ff0844 0%, #ffb199 100%)",
-  "linear-gradient(to top, #09203f 0%, #537895 100%)",
-];
+const themes = ["linear-gradient(to top, #30cfd0 0%, #330867 100%)", "linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)", "linear-gradient(to top, #ff0844 0%, #ffb199 100%)", "linear-gradient(to top, #09203f 0%, #537895 100%)"];
 
 const themeBtn = document.getElementById("theme-icon");
 const colorsList = document.getElementById("colors-list");
@@ -32,17 +27,34 @@ const mainContainer = document.getElementById("main-container");
 let emptySlot = document.querySelector(".empty");
 emptySlot.addEventListener("click", handleAddingPhotos);
 
+// UPDATING IMAGES
+
+// window.addEventListener("click", e => {
+//   const item = e.target;
+//   if (item.classList.contains("filled")) {
+//     console.log(item);
+//     item.innerHTML = getRandomImage(item.clientWidth, item.clientHeight);
+//   }
+// });
+
 function handleAddingPhotos() {
-  // when clicking on the empty slot, pull an image from lorempicsum
   handleAddingSections();
-  emptySlot.innerHTML = `<img style="border-radius: inherit" src="https://picsum.photos/${emptySlot.clientWidth}/${emptySlot.clientHeight}/"/>`;
+  // when clicking on the empty slot, pull an image from lorempicsum
+  emptySlot.innerHTML = getRandomImage(emptySlot.clientWidth, emptySlot.clientHeight);
   emptySlot.classList.remove("empty");
+
   emptySlot.removeEventListener("click", handleAddingPhotos);
+  emptySlot.addEventListener("click", handleUpdatingPhotos);
+  emptySlot.classList.add("filled");
   if (!emptySlot.nextElementSibling) handleAddingSections();
   else emptySlot = emptySlot.nextElementSibling;
   emptySlot.classList.add("empty");
   emptySlot.classList.remove("hidden");
   emptySlot.addEventListener("click", handleAddingPhotos);
+}
+
+function getRandomImage(width, height) {
+  return `<img style="border-radius: inherit" class="image" src="https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/"/>`;
 }
 
 function handleAddingSections() {
@@ -60,3 +72,13 @@ function handleAddingSections() {
     emptySlot = document.querySelector(".empty");
   }
 }
+
+function handleUpdatingPhotos(e) {
+  const item = e.target;
+  if (item.classList.contains("filled")) {
+    console.log(item);
+    item.innerHTML = getRandomImage(item.clientWidth, item.clientHeight);
+  }
+}
+
+functi;
