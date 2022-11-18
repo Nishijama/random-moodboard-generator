@@ -66,11 +66,21 @@ body {
   .horizontal {
     min-width: 300px;
     min-height: 200px;
+    img {
+      width: 300px;
+      height: 200px;
+      // pointer-events: none;
+    }
   }
 
   .vertical {
     min-width: 200px;
     min-height: 300px;
+    img {
+      width: 200px;
+      height: 300px;
+      // pointer-events: none;
+    }
   }
 
   div:nth-child(1) {
@@ -93,6 +103,10 @@ body {
     grid-row: 3 / span 1;
     justify-self: end;
   }
+}
+.flipping {
+  transform: rotateY(180deg);
+  transition: 1.5s;
 }
 
 // COLOR PICKER

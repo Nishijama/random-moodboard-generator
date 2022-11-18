@@ -62,9 +62,17 @@ body {
   min-width: 300px;
   min-height: 200px;
 }
+.four-part-container .horizontal img {
+  width: 300px;
+  height: 200px;
+}
 .four-part-container .vertical {
   min-width: 200px;
   min-height: 300px;
+}
+.four-part-container .vertical img {
+  width: 200px;
+  height: 300px;
 }
 .four-part-container div:nth-child(1) {
   grid-column: 1/span 2;
@@ -85,6 +93,11 @@ body {
   grid-column: 2/span 2;
   grid-row: 3/span 1;
   justify-self: end;
+}
+
+.flipping {
+  transform: rotateY(180deg);
+  transition: 1.5s;
 }
 
 #color-picker {

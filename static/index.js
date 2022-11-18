@@ -27,20 +27,12 @@ const mainContainer = document.getElementById("main-container");
 let emptySlot = document.querySelector(".empty");
 emptySlot.addEventListener("click", handleAddingPhotos);
 
-// UPDATING IMAGES
-
-// window.addEventListener("click", e => {
-//   const item = e.target;
-//   if (item.classList.contains("filled")) {
-//     console.log(item);
-//     item.innerHTML = getRandomImage(item.clientWidth, item.clientHeight);
-//   }
-// });
-
 function handleAddingPhotos() {
   handleAddingSections();
   // when clicking on the empty slot, pull an image from lorempicsum
-  emptySlot.innerHTML = getRandomImage(emptySlot.clientWidth, emptySlot.clientHeight);
+  const newImgNode = getRandomImage(emptySlot.clientWidth, emptySlot.clientHeight);
+  emptySlot.firstChild.remove();
+  emptySlot.appendChild(newImgNode);
   emptySlot.classList.remove("empty");
 
   emptySlot.removeEventListener("click", handleAddingPhotos);
@@ -54,7 +46,13 @@ function handleAddingPhotos() {
 }
 
 function getRandomImage(width, height) {
-  return `<img style="border-radius: inherit" class="image" src="https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/"/>`;
+  const imgNode = document.createElement("img");
+  imgNode.style.borderRadius = "inherit";
+  imgNode.classList.add("image");
+  imgNode.src = `https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/`;
+  console.log(imgNode);
+  return imgNode;
+  // return `<img style="border-radius: inherit" class="image" src="https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/"/>`;
 }
 
 function handleAddingSections() {
@@ -75,10 +73,14 @@ function handleAddingSections() {
 
 function handleUpdatingPhotos(e) {
   const item = e.target;
-  if (item.classList.contains("filled")) {
+  if (item.classList.contains("image")) {
     console.log(item);
-    item.innerHTML = getRandomImage(item.clientWidth, item.clientHeight);
+    item.classList.add("flipping");
+    item.addEventListener("transitionend", () => {
+      const tile = item.parentElement;
+      item.remove();
+      const newItem = getRandomImage(item.clientWidth, item.clientHeight);
+      tile.appendChild(newItem);
+    });
   }
 }
-
-functi;
