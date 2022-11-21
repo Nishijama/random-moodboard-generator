@@ -31,8 +31,10 @@ function handleAddingPhotos() {
   handleAddingSections();
   // when clicking on the empty slot, pull an image from lorempicsum
   const newImgNode = getRandomImage(emptySlot.clientWidth, emptySlot.clientHeight);
-  emptySlot.firstChild.remove();
-  emptySlot.appendChild(newImgNode);
+  let front = emptySlot.firstElementChild;
+  let back = emptySlot.lastElementChild;
+  front.firstChild.remove();
+  front.appendChild(newImgNode);
   emptySlot.classList.remove("empty");
 
   emptySlot.removeEventListener("click", handleAddingPhotos);
@@ -61,10 +63,22 @@ function handleAddingSections() {
     const fourPartContainer = document.createElement("div");
     fourPartContainer.classList.add("four-part-container");
     fourPartContainer.innerHTML = `
-    <div class="add_image horizontal q1 empty">+</div>
-    <div class="add_image vertical q2 hidden">+</div>
-    <div class="add_image vertical q3 hidden">+</div>
-    <div class="add_image horizontal q4 hidden">+</div>
+    <div class="add_image horizontal q1 empty">
+    <div class="front">+</div>
+    <div class="back">+</div>
+  </div>
+  <div class="add_image vertical q2 hidden">
+    <div class="front">+</div>
+    <div class="back">+</div>
+  </div>
+  <div class="add_image vertical q3 hidden">
+    <div class="front">+</div>
+    <div class="back">+</div>
+  </div>
+  <div class="add_image horizontal q4 hidden">
+    <div class="front">+</div>
+    <div class="back">+</div>
+  </div>
   `;
     mainContainer.appendChild(fourPartContainer);
     emptySlot = document.querySelector(".empty");
@@ -72,15 +86,21 @@ function handleAddingSections() {
 }
 
 function handleUpdatingPhotos(e) {
+  console.log(e.target);
   const item = e.target;
-  if (item.classList.contains("image")) {
-    console.log(item);
-    item.classList.add("flipping");
-    item.addEventListener("transitionend", () => {
-      const tile = item.parentElement;
-      item.remove();
-      const newItem = getRandomImage(item.clientWidth, item.clientHeight);
-      tile.appendChild(newItem);
-    });
+  if (item.classList.contains("add_image")) {
+    item.classList.toggle("flipping");
+    const newItem = getRandomImage(item.clientWidth, item.clientHeight);
+
+    const back = item.lastElementChild;
+    const front = item.firstElementChild;
+
+    if (item.classList.contains("flipping")) {
+      back.lastChild.remove();
+      back.appendChild(newItem);
+    } else {
+      front.lastChild.remove();
+      front.appendChild(newItem);
+    }
   }
 }
