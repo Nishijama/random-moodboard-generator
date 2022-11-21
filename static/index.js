@@ -1,5 +1,7 @@
 // THEME PICKER
-const themes = ["linear-gradient(to top, #30cfd0 0%, #330867 100%)", "linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)", "linear-gradient(to top, #ff0844 0%, #ffb199 100%)", "linear-gradient(to top, #09203f 0%, #537895 100%)"];
+const accentColors = ["#30cfd0", "#7028e4", "#ff0844", "#09203f"];
+
+const themes = [`linear-gradient(to top, ${accentColors[0]} 0%, #330867 100%)`, `linear-gradient(to top, ${accentColors[1]} 0%, #e5b2ca 100%)`, `linear-gradient(to top, ${accentColors[2]} 0%, #ffb199 100%)`, `linear-gradient(to top, ${accentColors[3]} 0%, #537895 100%)`];
 
 const themeBtn = document.getElementById("theme-icon");
 const colorsList = document.getElementById("colors-list");
@@ -13,6 +15,7 @@ themes.map(theme => {
   colorsList.appendChild(color);
   color.addEventListener("click", () => {
     document.querySelector("body").style.backgroundImage = theme;
+
     colorsList.classList.add("hidden");
   });
 });
@@ -31,10 +34,11 @@ function handleAddingPhotos() {
   handleAddingSections();
   // when clicking on the empty slot, pull an image from lorempicsum
   const newImgNode = getRandomImage(emptySlot.clientWidth, emptySlot.clientHeight);
-  let front = emptySlot.firstElementChild;
   let back = emptySlot.lastElementChild;
-  front.firstChild.remove();
-  front.appendChild(newImgNode);
+  emptySlot.classList.add("flipping");
+  emptySlot.dataset.icon = "↺";
+  back.firstChild.remove();
+  back.appendChild(newImgNode);
   emptySlot.classList.remove("empty");
 
   emptySlot.removeEventListener("click", handleAddingPhotos);
@@ -52,7 +56,6 @@ function getRandomImage(width, height) {
   imgNode.style.borderRadius = "inherit";
   imgNode.classList.add("image");
   imgNode.src = `https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/`;
-  console.log(imgNode);
   return imgNode;
   // return `<img style="border-radius: inherit" class="image" src="https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/"/>`;
 }
@@ -90,6 +93,7 @@ function handleUpdatingPhotos(e) {
   const item = e.target;
   if (item.classList.contains("add_image")) {
     item.classList.toggle("flipping");
+
     const newItem = getRandomImage(item.clientWidth, item.clientHeight);
 
     const back = item.lastElementChild;
@@ -98,9 +102,11 @@ function handleUpdatingPhotos(e) {
     if (item.classList.contains("flipping")) {
       back.lastChild.remove();
       back.appendChild(newItem);
+      item.dataset.icon = "↺";
     } else {
       front.lastChild.remove();
       front.appendChild(newItem);
+      item.dataset.icon = "↻";
     }
   }
 }
