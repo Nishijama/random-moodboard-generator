@@ -35,7 +35,7 @@ body {
 
 .add_image {
   border-radius: 30px;
-  transition: 1s;
+  transition: 0.3s linear;
   position: relative;
 
   &.empty {
@@ -45,6 +45,10 @@ body {
     font-weight: bold;
     text-align: center;
   }
+  &.empty:hover {
+    font-size: 34px;
+  }
+
   &.filled {
     transform-style: preserve-3d;
     transition: all 0.5s ease;
@@ -57,7 +61,7 @@ body {
   }
   &.filled:hover::after {
     content: attr(data-icon);
-    color: #ff0844;
+    // color: #111010;
     position: absolute;
     transition: 1s;
     left: 0;
@@ -141,11 +145,12 @@ body {
 
 #color-picker {
   position: fixed;
-  right: 60px;
+  right: 30px;
   top: 30px;
   display: flex;
 
   .fa-solid {
+    color: #111010;
     background-color: white;
     border-radius: 50%;
     opacity: 0.5;
@@ -161,7 +166,7 @@ body {
   #colors-list {
     position: absolute;
     top: 0;
-    right: 110px;
+    right: 60px;
     display: flex;
     flex-direction: row;
     align-items: center;

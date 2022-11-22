@@ -1,8 +1,12 @@
 // THEME PICKER
-const accentColors = ["#30cfd0", "#7028e4", "#ff0844", "#09203f"];
-let currentAccentColor = accentColors[3];
+const themes = [
+  { background: `linear-gradient(to top, #30cfd0 0%, #330867 100%)`, accent: "#30cfd0" },
+  { background: `linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)`, accent: "#7028e4" },
+  { background: `linear-gradient(to top, #ff0844 0%, #ffb199 100%)`, accent: "#ff0844" },
+  { background: `linear-gradient(to top, #09203f 0%, #537895 100%)`, accent: "#09203f" },
+];
 
-const themes = [`linear-gradient(to top, ${accentColors[0]} 0%, #330867 100%)`, `linear-gradient(to top, ${accentColors[1]} 0%, #e5b2ca 100%)`, `linear-gradient(to top, ${accentColors[2]} 0%, #ffb199 100%)`, `linear-gradient(to top, ${accentColors[3]} 0%, #537895 100%)`];
+loadMoodboard();
 
 const themeBtn = document.getElementById("theme-icon");
 const colorsList = document.getElementById("colors-list");
@@ -12,11 +16,12 @@ themes.map(theme => {
   color.style.width = "40px";
   color.style.height = "40px";
   color.style.borderRadius = "50%";
-  color.style.backgroundImage = theme;
+  color.style.backgroundImage = theme.background;
   colorsList.appendChild(color);
   color.addEventListener("click", () => {
-    document.querySelector("body").style.backgroundImage = theme;
-    currentAccentColor;
+    document.querySelector("body").style.backgroundImage = theme.background;
+    document.querySelector("body").style.color = theme.accent;
+    saveMoodboard();
     colorsList.classList.add("hidden");
   });
 });
@@ -25,8 +30,30 @@ themeBtn.addEventListener("click", () => {
   colorsList.classList.toggle("hidden");
 });
 
-// ADDING IMAGES
+//LOAD SAVED MOODBOARD
+function loadMoodboard() {
+  if (window.localStorage.getItem("moodboard-theme")) {
+    const data = JSON.parse(window.localStorage.getItem("moodboard-theme"));
+    const background = data.backgroundImage;
+    const accent = data.color;
+    document.querySelector("body").style.backgroundImage = background;
+    document.querySelector("body").style.color = accent;
+  }
+}
 
+// SAVING CURRENT MOODBOARD
+function saveMoodboard() {
+  window.localStorage.setItem(
+    "moodboard-theme",
+    JSON.stringify({
+      backgroundImage: document.querySelector("body").style.backgroundImage,
+      color: document.querySelector("body").style.color,
+    })
+  );
+}
+// const saveBtn = document.querySelector("#save-icon").addEventListener("click", saveMoodboard);
+
+// ADDING IMAGES
 const mainContainer = document.getElementById("main-container");
 let emptySlot = document.querySelector(".empty");
 emptySlot.addEventListener("click", handleAddingPhotos);
