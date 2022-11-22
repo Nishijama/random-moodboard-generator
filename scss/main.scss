@@ -141,24 +141,27 @@ body {
 
 #color-picker {
   position: fixed;
-  right: 30px;
+  right: 60px;
   top: 30px;
+  display: flex;
 
-  #theme-icon {
+  .fa-solid {
     background-color: white;
     border-radius: 50%;
     opacity: 0.5;
     padding: 15px;
     transition: 0.5s;
+    margin: 5px;
   }
-  #theme-icon:hover {
+  .fa-solid:hover {
     cursor: pointer;
     opacity: 1;
   }
+
   #colors-list {
     position: absolute;
     top: 0;
-    right: 60px;
+    right: 110px;
     display: flex;
     flex-direction: row;
     align-items: center;
