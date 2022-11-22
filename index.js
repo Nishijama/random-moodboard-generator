@@ -51,7 +51,7 @@ function saveMoodboard() {
     })
   );
 }
-// const saveBtn = document.querySelector("#save-icon").addEventListener("click", saveMoodboard);
+// const saveBtn = document.querySelector("#save-icon").addEventListener("click", saveMoodboard); // to be re-visited
 
 // ADDING IMAGES
 const mainContainer = document.getElementById("main-container");
@@ -79,15 +79,16 @@ function handleAddingPhotos() {
   emptySlot.addEventListener("click", handleAddingPhotos);
 }
 
+// create a new Image node and fill it with random image
 function getRandomImage(width, height) {
   const imgNode = document.createElement("img");
   imgNode.style.borderRadius = "inherit";
   imgNode.classList.add("image");
   imgNode.src = `https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/`;
   return imgNode;
-  // return `<img style="border-radius: inherit" class="image" src="https://picsum.photos/${width}/${height}?random=${Math.floor(Math.random() * 300)}/"/>`;
 }
 
+// CREATING LAYOUT
 function handleAddingSections() {
   // if there is no 'empty' slot, create a new four-part-container and make all slots hidden except for q1
   if (document.getElementsByClassName("empty").length === 0) {
@@ -116,6 +117,7 @@ function handleAddingSections() {
   }
 }
 
+// UPDATE IMAGES
 function handleUpdatingPhotos(e) {
   console.log(e.target);
   const item = e.target;
