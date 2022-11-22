@@ -1,6 +1,6 @@
 // THEME PICKER
 const themes = [
-  { background: `linear-gradient(to top, #30cfd0 0%, #330867 100%)`, accent: "#30cfd0" },
+  { background: `linear-gradient(to top, #330867 0%, #30cfd0 100%)`, accent: "#330867" },
   { background: `linear-gradient(to top, #7028e4 0%, #e5b2ca 100%)`, accent: "#7028e4" },
   { background: `linear-gradient(to top, #ff0844 0%, #ffb199 100%)`, accent: "#ff0844" },
   { background: `linear-gradient(to top, #09203f 0%, #537895 100%)`, accent: "#09203f" },
